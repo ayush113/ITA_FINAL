@@ -1,0 +1,40 @@
+{% extends 'accounts/layout/page.html' %}
+
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block content %}
+    <style>
+    .logs{
+        border-radius: 12px;
+        background-color: lawngreen;
+    }
+    .constrained{
+        width: fit-content;
+        padding-left: 10px;
+    }
+    </style>
+
+
+
+    <form method="post">
+
+        <div class="constrained">
+            <h4>{% trans 'Log in' %}</h4>
+            {% csrf_token %}
+        {% bootstrap_form form %}
+
+        <button class="btn btn-cta logs">{% trans 'Log in' %}</button>
+        </div>
+
+    </form>
+
+    <hr>
+
+    <ul>
+        <li>
+            <a href="{% url 'accounts:restore_password' %}" style="color: darkgreen">{% trans 'Forgot your password?' %}</a>
+        </li>
+    </ul>
+
+{% endblock %}
