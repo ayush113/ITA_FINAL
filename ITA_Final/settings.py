@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bootstrap4',
     'accounts',
+    'notes',
 ]
 
 MIDDLEWARE = [
@@ -122,11 +123,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-NABLE_USER_ACTIVATION = False
+ENABLE_USER_ACTIVATION = False
 DISABLE_USERNAME = False
 LOGIN_VIA_EMAIL = False
 LOGIN_VIA_EMAIL_OR_USERNAME = True
-LOGIN_REDIRECT_URL = 'dashboard'
+LOGIN_REDIRECT_URL = 'notes'
 LOGIN_URL = 'accounts:log_in'
 USE_REMEMBER_ME = True
 

@@ -103,11 +103,11 @@ function closeNav() {
     {% if request.user.is_authenticated %}
     <div id="mySidenav" class="sidenav navbar-brand">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="{% url 'dashboard' %}">{% trans 'Home' %}</a>
-    <a href="{% url 'projects' %}">My Projects</a>
-    <a href="{% url 'leads' %}">Leads</a>
-    <a href="{% url 'customer' %}">Customer Support</a>
-    <a href="{% url 'social' %}">Social</a>
+{#    <a href="{% url 'dashboard' %}">{% trans 'Home' %}</a>#}
+{#    <a href="{% url 'projects' %}">My Projects</a>#}
+{#    <a href="{% url 'leads' %}">Leads</a>#}
+{#    <a href="{% url 'customer' %}">Customer Support</a>#}
+{#    <a href="{% url 'social' %}">Social</a>#}
     </div>
 
         <span style="cursor:pointer;color: white;font-size: 20px" onclick="openNav()">&#9776;</span>
