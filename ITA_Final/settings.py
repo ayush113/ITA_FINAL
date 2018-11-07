@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'accounts',
     'notes',
+    'wolfram',
+    'weather'
 ]
 
 MIDDLEWARE = [
