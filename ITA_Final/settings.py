@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'wolfram',
     'weather',
     'reminders',
+    'home',
 ]
 
 MIDDLEWARE = [
