@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,7 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'notes',
     'wolfram',
-    'weather'
+    'weather',
+    'reminders',
 ]
 
 MIDDLEWARE = [
@@ -153,3 +155,17 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(CONTENT_DIR, 'assets'),
 ]
+
+# CELERY STUFF
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'
+CELERY_BEAT_SCHEDULE = {
+    'task-number-one':{
+        'task': 'reminders.tasks.something',
+        'schedule': crontab(minute = 1)
+    }
+}

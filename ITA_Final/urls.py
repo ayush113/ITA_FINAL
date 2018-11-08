@@ -21,5 +21,6 @@ urlpatterns = [
     path('account/',include('accounts.urls')),
     path('notes/',include('notes.urls')),
     path('weather/',include('weather.urls')),
+    path('reminder/',include('reminders.urls')),
 
 ]
