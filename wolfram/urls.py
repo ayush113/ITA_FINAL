@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns=[
-    path('',wolfram.views,name='wolfram'),
+    path('',views.wolfram,name='wolfram'),
 ]

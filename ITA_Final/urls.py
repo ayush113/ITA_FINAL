@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/',include('accounts.urls')),
     path('notes/',include('notes.urls')),
+    path('wolfram/',include('wolfram.urls')),
     path('weather/',include('weather.urls')),
     path('reminder/',include('reminders.urls')),
 
