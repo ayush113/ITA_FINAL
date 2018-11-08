@@ -16,6 +16,7 @@
     <meta name="author" content="Gauri Baraskar">
 
     <link rel="icon" href="{% static 'finallogo.png' %}">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
     <title>CRM</title>
 
@@ -83,7 +84,11 @@
 }
 
     </style>
-
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+{% csrf_token %}
     <script>
         function openNav() {
     document.getElementById("mySidenav").style.width = "200px";
@@ -92,6 +97,23 @@
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
 }
+        {% if request.user.is_authenticated %}
+function polls(){
+    $.post('{% url 'notification' %}',function (result) {
+        var chem = result[0];
+        document.getElementById("conts").innerText = chem['description'];
+        $("#remind").show()
+    })
+}
+
+$(document).ready(function () {
+
+    $("#remind").hide();
+
+    var myvar = setInterval(polls,15000);
+})
+        {% endif %}
+
     </script>
 
 </head>
@@ -159,6 +181,11 @@ function closeNav() {
 </nav>
 
 <div class="container-fluid mt-3">
+
+    <div id="remind" class="jumbotron w3-container w3-center w3-animate-zoom">
+        <center><h4>Reminder for {{ request.user.username }}</h4></center>
+        <p id="conts"></p>
+    </div>
 
     {% bootstrap_messages %}
 
