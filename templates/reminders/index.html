@@ -6,9 +6,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Reminders</title>
+    <script>
+        function addsrem() {
+            var description = $("#desc").val();
+            var rtime = $("#rtime").val();
+            $.post('{% url 'remind' %}',{desc:description,rtime:rtime},function(result){
+                location.reload()
+            })
+        }
+
+        function removes(desc) {
+            $.post('{% url 'removes' %}',{desc:desc},function(result){
+                location.reload()
+            })
+        }
+    </script>
 </head>
 <body>
+    <div class="jumbotron">
+        {% csrf_token %}
+        <form>
+        <div class="row">
+            <div class="col-sm-4">Reminder Description</div>
+            <div class="col-sm-8"><textarea id="desc"></textarea></div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+            <div class="col-sm-4">Reminder Time</div>
+            <div class="col-sm-8"><input type="datetime-local" id="rtime"></div>
+        </div>
+        <div class="row">
+            <button class="btn btn-default" onclick="addsrem();">Add Reminder</button>
+        </div>
+        </form>
+    </div>
 
+    {% if reminders %}
+    <div class="jumbotron">
+        <h5>Reminders For this user</h5>
+        <table class="border">
+            <tr class="border">
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+            {% for data in reminders %}
+            <tr class="border">
+                <td>{{ data.description }}</td>
+                <td><button class="btn btn-danger" onclick="removes('{{ data.description }}');">Remove</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    {% endif %}
 </body>
 </html>
 

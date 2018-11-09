@@ -83,6 +83,8 @@
   .sidenav a {font-size: 18px;}
 }
 
+
+
     </style>
 <script
   src="https://code.jquery.com/jquery-3.3.1.js"
@@ -101,8 +103,14 @@ function closeNav() {
 function polls(){
     $.post('{% url 'notification' %}',function (result) {
         var chem = result[0];
-        document.getElementById("conts").innerText = chem['description'];
-        $("#remind").show()
+        console.log(chem['nores'])
+        if(chem['nores'] == 1) {
+            return;
+        }
+        else {
+            document.getElementById("conts").innerText = chem['description'];
+            $("#send").click()
+        }
     })
 }
 
@@ -112,7 +120,9 @@ $(document).ready(function () {
 
     var myvar = setInterval(polls,15000);
 })
+
         {% endif %}
+
 
     </script>
 
@@ -182,10 +192,29 @@ $(document).ready(function () {
 
 <div class="container-fluid mt-3">
 
-    <div id="remind" class="jumbotron w3-container w3-center w3-animate-zoom">
-        <center><h4>Reminder for {{ request.user.username }}</h4></center>
-        <p id="conts"></p>
+
+<button hidden="hidden" id="send" class="btn btn-default theme pads" data-toggle="modal" data-target="#myModal">Call Modal</button>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><img src="{% static 'img/clock.png' %}" height="60px" width="60px"></h5>
+            <p id="conts" style="margin-right: 10px;font-size: 20px; margin-top: 20px"></p>
+
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+            <button type="button" style="margin-left: 20px" class="btn btn-danger float-right" data-dismiss="modal">Dismiss</button>
+            </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 
     {% bootstrap_messages %}
 
