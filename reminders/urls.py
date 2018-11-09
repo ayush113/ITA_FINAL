@@ -5,4 +5,5 @@ from . import views
 urlpatterns = [
     path('',views.reminds,name='remind'),
     path('notify',views.notify,name='notification'),
+    path('remove',views.removes,name='removes'),
 ]

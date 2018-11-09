@@ -274,6 +274,11 @@ header.masthead .post-heading .meta a {
   }
 }
 
+.masthead{
+  height: 100%;
+  background: #1b1e21;
+}
+
 .post-preview > a {
   color: #212529;
 }

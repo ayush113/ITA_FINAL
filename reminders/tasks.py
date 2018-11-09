@@ -15,8 +15,8 @@ def something():
     if os.path.isfile("reminders.pkl"):
         os.remove("reminders.pkl")
     file = open("reminders.pkl","wb")
-    print(type(res))
     pickle.dump(res,file)
+    print(res)
 
 
 
