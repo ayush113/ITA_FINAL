@@ -2,7 +2,7 @@
 <!--DOCTYPE html -->
 <html>
 <head>
-<title>{% block head_title %}DiscussionForumClone{% endblock head_title %}</title>
+<title>{% block head_title %}ProductiveNITK Forum{% endblock head_title %}</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -54,12 +54,12 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
   </div>
-<h2 style="text-align:center;"><img id = "logo-img"src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2vdC6EB3OH38pi6EdS_ncDLnqh03NP25OKcbEwOTW37yHGyo">  </img>DiscussionForumClone</h2>
+<h2 style="text-align:center;"><img id = "logo-img"src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ2vdC6EB3OH38pi6EdS_ncDLnqh03NP25OKcbEwOTW37yHGyo">  </img>ProductiveNITK Forum</h2>
 <hr/>
 {% include "messages_display.html" %}
 <div class='container'> 
     <ol class='breadcrumb'>
-        <li><a href='{% url "posts:list" %}'>Home</a></li>
+        <li><a href='{% url "notes" %}'>Home</a></li>
         {% block post_detail_link %}
         {% endblock %}
 
