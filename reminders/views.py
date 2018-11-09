@@ -5,10 +5,12 @@ import pickle
 from django.db import connection
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth.decorators import login_required
 from notes.utils import namedtuplefetchall
 
 # Create your views here.
 @csrf_exempt
+@login_required
 def reminds(request):
     if request.method == 'POST':
         data = request.POST

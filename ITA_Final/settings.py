@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'reminders',
     'home',
     'todolist',
+    'posts',
+    'comments',
+    'crispy_forms',
+    'markdown_deux',
+    'pagedown',
+
 ]
 
 MIDDLEWARE = [
@@ -171,3 +177,10 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': crontab(minute = 1)
     }
 }
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = 'lockyourlead@gmail.com'
+EMAIL_HOST_PASSWORD = "$pbkdf2-sha256$29000$kHKuNUYIgRAihLCWkjLG.A$DEXAe/b3a9x2DqfoMGla9ai4OdK2siUZF/vyeDbM7V0"
+EMAIL_FILE_PATH = os.path.join(CONTENT_DIR, 'tmp/emails')
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

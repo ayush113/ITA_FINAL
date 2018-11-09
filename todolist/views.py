@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from .models import TodoList, Category
 
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request): #the index view
     todos = TodoList.objects.all() #quering all todos with the object manager
     categories = Category.objects.all() #getting all categories with object manager

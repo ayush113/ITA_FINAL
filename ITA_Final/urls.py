@@ -25,5 +25,7 @@ urlpatterns = [
     path('weather/',include('weather.urls')),
     path('reminder/',include('reminders.urls')),
     path('todolist/',include('todolist.urls')),
+    path('posts/',include('posts.urls',namespace='posts')),
+    path('comments/',include('comments.urls',namespace='comments')),
 
 ]

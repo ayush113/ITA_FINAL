@@ -17,6 +17,7 @@
 
     <link rel="icon" href="{% static 'finallogo.png' %}">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
 
     <title>CRM</title>
 
@@ -83,6 +84,10 @@
   .sidenav a {font-size: 18px;}
 }
 
+        #mySidenav{
+            opacity: 0.7;
+        }
+
 
 
     </style>
@@ -93,12 +98,14 @@
 {% csrf_token %}
     <script>
         function openNav() {
+    $("#bsd").hide()
     document.getElementById("mySidenav").style.width = "200px";
 }
 
 function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
-}
+    $("#bsd").show()
+        }
         {% if request.user.is_authenticated %}
 function polls(){
     $.post('{% url 'notification' %}',function (result) {
@@ -133,16 +140,15 @@ $(document).ready(function () {
 <nav class="navbar navbar-expand-md navbar-dark bg-dark static-top">
 
     {% if request.user.is_authenticated %}
-    <div id="mySidenav" class="sidenav navbar-brand">
+    <div id="mySidenav" class="sidenav navbar-brand" style="margin-top: 20px;">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-{#    <a href="{% url 'dashboard' %}">{% trans 'Home' %}</a>#}
-{#    <a href="{% url 'projects' %}">My Projects</a>#}
-{#    <a href="{% url 'leads' %}">Leads</a>#}
-{#    <a href="{% url 'customer' %}">Customer Support</a>#}
-{#    <a href="{% url 'social' %}">Social</a>#}
+    <a href="{% url 'notes' %}">Notes</a>
+    <a href="{% url 'remind' %}">Reminders</a>
+    <a href="{% url 'wolfram' %}">Wolfram</a>
+    <a href="{% url 'weather' %}">Weather</a></a>
+    <a href="{% url 'todolist' %}">Todo List</a></a>
     </div>
-
-        <span style="cursor:pointer;color: white;font-size: 20px" onclick="openNav()">&#9776;</span>
+        <span style="cursor:pointer;color: white;font-size: 20px" onclick="openNav()" id="bsd">&#9776;</span>
 {% endif %}
 
 

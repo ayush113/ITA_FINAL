@@ -2,8 +2,11 @@ from django.shortcuts import render
 import requests
 from .models import City
 from .forms import CityForm
+from django.db import connection
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request):
     cities = City.objects.all()  # return all the cities in the database
 
@@ -32,6 +35,8 @@ def index(request):
 
     context = {'weather_data': weather_data, 'form': form}
 
+    with connection.cursor() as curr:
+        curr.execute("DELETE FROM weather_city WHERE NOT id = 1")
 
     return render(request, 'weather/index.html', context)  # returns the index.html template
 # Create your views here.

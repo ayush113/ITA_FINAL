@@ -7,9 +7,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Wolfram</title>
+    <script>
+        function search() {
+            var term = $("#item").val()
+            $.post('{% url 'wolfram' %}',{term:term},function(result){
+
+                    var res = document.getElementById('results')
+                    res.innerText = result
+                    $("#resdiv").show()
+
+                })
+
+        }
+
+        $(document).ready(function () {
+            $("#resdiv").hide()
+        })
+    </script>
 </head>
 <body>
-
+    <div class="jumbotron">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-4">
+                <input type="text" placeholder="Search Item Here" id="item">
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn btn-info" id="search" onclick="search();">Search</button>
+        </div>
+    </div>
+    <div class="jumbotron" id="resdiv">
+        Results:
+        <p id="results"></p>
+    </div>
 </body>
 </html>
 
