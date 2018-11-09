@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'weather',
     'reminders',
     'home',
+    'todolist',
 ]
 
 MIDDLEWARE = [

@@ -24,5 +24,6 @@ urlpatterns = [
     path('wolfram/',include('wolfram.urls')),
     path('weather/',include('weather.urls')),
     path('reminder/',include('reminders.urls')),
+    path('todolist/',include('todolist.urls')),
 
 ]
