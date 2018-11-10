@@ -1,17 +1,91 @@
 {% extends 'accounts/layout/page.html' %}
 
+
+
 {% block content %}
 <!DOCTYPE html>
     <html>
         <head>
-            <link href="http://codepen.io/edbond88/pen/CcgvA.css" media="screen" rel="stylesheet" type="text/css" />
-            <style>
-            body {
-              background: rgba(222,222,222,1);
-
-            }
-            </style>
+            <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{#            <link href="http://codepen.io/edbond88/pen/CcgvA.css" media="screen" rel="stylesheet" type="text/css" />#}
+                <script
+            src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
         </head>
+        <style>
+            body{
+                background-color: dimgray;
+            }
+
+            .note-wrap {
+  width: 235px;
+  min-height: 235px;
+  padding: 35px;
+  margin: 0 22px 44px 22px;
+  position: relative;
+  font-size: 24px;
+  vertical-align: top;
+  display: inline-block;
+  font-family: Englebert, Arial;
+  color: #4b453c;
+  background: #F7E999;
+  line-height: 34px;
+  text-align: center;
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.note-wrap a {
+  color: #6b824f;
+  text-decoration: none;
+  font-size: 20px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+.note-wrap a:hover {
+  color: #D83A25;
+}
+
+.note-yellow {
+  background: #F7E999;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  transform: rotate(2deg);
+}
+
+.note-blue {
+  background: #b9dcf4;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
+}
+
+.note-pink {
+  background: #FFBDA3;
+  -webkit-transform: rotate(1deg);
+  -moz-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  transform: rotate(1deg);
+}
+
+.note-green {
+    background: #CAF4B9;
+    -webkit-transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -o-transform: rotate(-1deg);
+    -ms-transform: rotate(-1deg);
+    transform: rotate(-1deg);
+}
+        </style>
 
         <body>
          {% for note in notes %}
