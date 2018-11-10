@@ -1,0 +1,32 @@
+{% extends 'accounts/layout/page.html' %}
+
+{% load static %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+      <input type="text" name="filename">
+    <input type="file" name="myfile">
+    <button type="submit">Upload</button>
+  </form>
+
+  {% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+  {% endif %}
+
+  <p><a href="{% url 'dashboard' %}">Return to home</a></p>
+
+   <div class="jumbotron">
+   <h4>Files Shared</h4>
+   <table>
+       <tr><th>File Name</th>
+       <th>Shared By</th></tr>
+       {% for link in links %}
+        <tr>
+            <td><a href="{{ link.shared_url }}">{{ link.filename }}</a></td>
+        <td>{{ link.first_name }} {{ link.last_name }}</td>
+        </tr>
+       {% endfor %}
+   </table>
+   </div>
+{% endblock %}

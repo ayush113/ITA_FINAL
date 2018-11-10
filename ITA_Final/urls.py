@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('',include('home.urls')),
@@ -27,6 +29,12 @@ urlpatterns = [
     path('todolist/',include('todolist.urls')),
     path('posts/',include('posts.urls',namespace='posts')),
     path('comments/',include('comments.urls',namespace='comments')),
-    path('timings/',include('timings.urls'))
+    path('timings/',include('timings.urls')),
+    path('fileshare/',include('filesharing.urls')),
 
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
