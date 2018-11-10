@@ -27,5 +27,6 @@ urlpatterns = [
     path('todolist/',include('todolist.urls')),
     path('posts/',include('posts.urls',namespace='posts')),
     path('comments/',include('comments.urls',namespace='comments')),
+    path('timings/',include('timings.urls'))
 
 ]
