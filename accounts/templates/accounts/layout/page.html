@@ -127,11 +127,13 @@ $(document).ready(function () {
         {% if request.user.is_authenticated %}
         <div id="mySidenav" class="sidenav navbar-brand">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            </br>
         <a href="{% url 'dashboard' %}">{% trans 'Home' %}</a>
-        <a href="{% url 'notes' %}">My Projects</a>
-        <a href="{% url 'remind' %}">Leads</a>
-        <a href="{% url 'posts:list' %}">Customer Support</a>
-        <a href="{% url 'wolfram' %}">Social</a>
+        <a href="{% url 'notes' %}">Notes</a>
+            <a href="{% url 'todolist' %}">ToDo list</a>
+        <a href="{% url 'remind' %}">Reminders</a>
+        <a href="{% url 'posts:list' %}">Forum</a>
+        <a href="{% url 'wolfram' %}">Wolfram Engine</a>
         </div>
 
             <span style="cursor:pointer;color: white;font-size: 20px" onclick="openNav()">&#9776;</span>
