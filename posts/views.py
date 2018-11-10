@@ -43,7 +43,7 @@ def post_create(request):
 	context = {
 		"form": form,
 	}
-	return render(request, "post_form.html", context)
+	return render(request, "forum/post_form.html", context)
 
 def post_detail(request, slug=None):
 	instance = get_object_or_404(Post, slug=slug)
@@ -92,7 +92,7 @@ def post_detail(request, slug=None):
 		"comment_form":form,
 		"current_user":request.user,
 	}
-	return render(request, "post_detail.html", context)
+	return render(request, "forum/post_detail.html", context)
 
 def post_list(request):
 	today = timezone.now().date()
@@ -128,7 +128,7 @@ def post_list(request):
 		"today": today,
 		"check_user":request.user,
 	}
-	return render(request, "post_list.html", context)
+	return render(request, "forum/post_list.html", context)
 
 
 
@@ -150,7 +150,7 @@ def post_update(request, slug=None):
 		"instance": instance,
 		"form":form,
 	}
-	return render(request, "post_form.html", context)
+	return render(request, "forum/post_form.html", context)
 
 
 

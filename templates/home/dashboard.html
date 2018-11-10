@@ -1,6 +1,109 @@
 {% extends 'accounts/layout/page.html' %}
-
+{% load static %}
 {% block content %}
+<!DOCTYPE html>
+<html>
+<head><title>ProductiveNITK - Home</title>
+<link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
+    <style type="text/css">
+        .card{
+            height: 100px;
+            width: 400px;
+        }
+    </style>
+<script>
+function startTime() {
+    var today = new Date();
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    m = checkTime(m);
+    s = checkTime(s);
+    document.getElementById('txt').innerHTML =
+    h + ":" + m + ":" + s;
+    var t = setTimeout(startTime, 500);
+}
+function checkTime(i) {
+    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}
+</script>
+</head>
+
+<body onload="startTime()">
+<div class="jumbotron">
+<center>
+
+    <div id="txt" style="font-size: 40px"></div>
+<h1 class="display-3" style="font-size: 25px">
+	Welcome, {{ request.user.first_name }} !
+
+  </h1>
+</center>
+</div>
+<center>
+<div class="container" style: "margin-left: 50%;">
+	<div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+            <a href="{% url 'notes' %}" style="color: black">
+                <img src="{% static 'img/notes.jpeg' %}" height="40px" width="40px">
+    		<h4 class="card-title">Notes</h4>
+            </a>
+  		</div>
+	</div>
+	<div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+
+            <img src="{% static 'img/clock.png' %}" height="40px" width="40px">
+            <a href="{% url 'remind' %}" style="color: black"><h4 class="card-title">Reminders</h4>
+  		</div>
+	</div>
+</div>
+<div class="container" style: "margin-left: 50%;">
+	<div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+            <a href="{% url 'todolist' %}" style="color: black">
+                <img src="{% static 'img/todo.jpeg' %}" height="40px" width="40px">
+    		<h4 class="card-title">Todo List</h4>
+            </a>
+
+  		</div>
+	</div>
+    <div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+            <a href="{% url 'wolfram' %}" style="color: black">
+                <img src="{% static 'img/wolfram.png' %}" height="40px" width="40px">
+    		<h4 class="card-title">Wolfram Engine</h4>
+            </a>
+  		</div>
+	</div>
+
+</div>
+<div class="container" style: "margin-left: 50%;">
+
+    <div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+            <a href="{% url 'timings' %}" style="color: black">
+                <img src="{% static 'img/fac.png' %}" height="40px" width="40px">
+                <h4 class="card-title">Facilities</h4>
+            </a>
+        </div>
+	</div>
+    <div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
+  		<div class="card-body">
+            <a href="#" style="color: black">
+                <img src="{% static 'img/file.jpeg' %}" height="40px" width="40px">
+    		<h4 class="card-title">File Sharing</h4>
+            </a>
+  		</div>
+	</div>
+
+</div>
+</center>
+</body>
+</html>
+
+
 
 
 {% endblock %}
