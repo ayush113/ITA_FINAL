@@ -19,7 +19,7 @@
     border-radius: 2px;
     border: none;
     outline: none;
-    height: 50px;
+    height: 40px;
     font-size: 14px;
     color: #fff;
     cursor: pointer;
@@ -29,27 +29,35 @@
     transition: all 0.3s;
     padding-left: 20px;
     padding-right: 15px;
+    margin-top: 10px;
         }
     </style>
     </head>
+    <div class="row">
+    <div class="col-lg-6">
+        <h4 style="margin-bottom: 25px">Upload file</h4>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-      <input type="text" name="filename">
-    <input type="file" name="myfile">
+      <input type="text" name="filename" style="margin-bottom: 10px"><br/>
+    <input type="file" name="myfile" style="margin-bottom: 10px"><br/>
     <button class="taskAdd but" type="submit"><i class="fa fa-upload" style="margin-right: 10px"></i>Upload</button>
   </form>
+
 
   {% if uploaded_file_url %}
     <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
   {% endif %}
 
-  <p><a href="{% url 'dashboard' %}">Return to home</a></p>
+    </div>
 
-   <div class="jumbotron">
-   <h4>Files Shared</h4>
+   <div class="col-lg-6">
+   <h4 style="margin-bottom: 25px">Files Shared</h4>
+       <div class="card">
    <table class="border" cellpadding="15">
        <tr><th>File Name</th>
-       <th>Shared By</th></tr>
+       <th>Shared By</th>
+       </tr>
+
        {% for link in links %}
         <tr>
             <td><a href="{{ link.shared_url }}">{{ link.filename }}</a></td>
@@ -58,4 +66,6 @@
        {% endfor %}
    </table>
    </div>
+       </div>
+    </div>
 {% endblock %}

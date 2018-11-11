@@ -4,7 +4,9 @@ from django.conf import settings
 from django.core.files.storage import FileSystemStorage
 from django.db import connection
 from notes.utils import namedtuplefetchall
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def simple_upload(request):
     with connection.cursor() as curr:
         curr.execute("select filename,shared_url,first_name,last_name from fileshared inner join auth_user on fileshared.user_id = auth_user.id")
