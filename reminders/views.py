@@ -21,7 +21,7 @@ def reminds(request):
         val = li[0]+' '+li[1]+':00'
 
         with connection.cursor() as curr:
-            curr.execute("INSERT INTO reminders VALUES(%s,%s,%s)",[request.user.id,desc,val])
+            curr.execute("INSERT INTO reminders(user_id, description, reminder_time) VALUES(%s,%s,%s)",[request.user.id,desc,val])
         return JsonResponse(1,safe=False)
     else:
         with connection.cursor() as curr:
@@ -33,10 +33,10 @@ def reminds(request):
 @csrf_exempt
 def removes(request):
     data = request.POST
-    desc = data.get('desc')
+    desc = int(data.get('desc'))
     uid = request.user.id
     with connection.cursor() as curr:
-        curr.execute("DELETE FROM reminders WHERE description=%s AND user_id=%s",[desc,uid])
+        curr.execute("DELETE FROM reminders WHERE reminder_id=%s AND user_id=%s",[desc,uid])
     return JsonResponse(1,safe=False)
 
 @csrf_exempt

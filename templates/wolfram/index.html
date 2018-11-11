@@ -1,5 +1,5 @@
 {% extends 'accounts/layout/page.html' %}
-
+{% load static %}
 {% block content %}
 
 <!DOCTYPE html>
@@ -25,6 +25,17 @@
         })
     </script>
 </head>
+<style>
+    body{
+        background: url("{% static 'img/map.jpeg' %}");
+        backdrop-filter: blur();
+        background-size: cover;
+        background-repeat: no-repeat;
+
+
+    }
+
+</style>
 <body>
     <div class="jumbotron">
         {% csrf_token %}
