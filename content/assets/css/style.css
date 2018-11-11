@@ -9,14 +9,14 @@ html {
     font-size: 100%;
 }
 body {
-    background: #b1f6cb;
+    background-color: #6DDCBD;
     font-family: 'Open Sans',sans-serif;
 }
 /* super basic grid structure */
 .container {
-    width: 600px;
+    width: 100%;
     margin: 0 auto;
-    background: #ffffff;
+    background: transparent;
     padding: 20px 0;
     -webkit-box-shadow: 0 0 2px rgba(0,0,0,0.2);
             box-shadow: 0 0 2px rgba(0,0,0,0.2);
@@ -34,7 +34,7 @@ body {
     float: left;
 }
 .content {
-    background: #fff;
+    background: transparent;
 }
 /* logo */
 h1 {
