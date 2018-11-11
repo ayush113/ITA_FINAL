@@ -14,30 +14,6 @@
 
 <link rel='stylesheet' href='{% static "css/base.css" %}' />
 <style>
-
-    ol.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-    background-color: #eee;
-}
-
-ol.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-}
-ol.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-}
-ol.breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-}
-ol.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
-}
 .col-sm-9-h2{
     float:middle;
     text-align:center;
@@ -59,16 +35,32 @@ ol.breadcrumb li a:hover {
     height : 50%;
 }
 body{
-    background: url("{% static 'img/soothing.jpeg'%}");
-    background-size: cover;
-    background-repeat: no-repeat;
-
+    background-color: lightgray;
 }
-.container{
-    margin-left: auto;
-    margin-right: auto;
-
+.taskAdd {
+    background-color: purple;
+    padding-left: 31px;
 }
+        .taskAdd:hover {
+    background: rebeccapurple;
+}
+        .but{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
 {% block style %}{% endblock style %}
 </style>
 
@@ -85,29 +77,28 @@ fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 <div class="w3-display-topleft w3-container w3-small">
 
-  
+
 
 
   </div>
-
-<h2 style="text-align:center; font-size: 40px; padding-top: 15px; color: white;">ProductiveNITK Forum</h2>
-
+<h2 style="text-align:center;">ProductiveNITK Forum</h2>
+<hr/>
 {% include "forum/messages_display.html" %}
-<div class='container'> 
+<div class='container'>
     <ol class='breadcrumb'>
         <li><a href='{% url "dashboard" %}'>Home</a></li>
         {% block post_detail_link %}
         {% endblock %}
 
         {% if not request.user.is_authenticated %}
-        <li class='pull-right'><a href='{% url "register" %}'>Register</a></li>
-        <li class='pull-right'><a href='{% url "login" %}'>Login</a></li>
+        <li class='pull-right'><a href='{% url "accounts:sign_upr" %}'>Register</a></li>
+        <li class='pull-right'><a href='{% url "accounts:log_in" %}'>Login</a></li>
         {% else %}
         <li class='pull-right'><a href='{% url "accounts:log_out" %}'>Logout</a></li>
         <li class='pull-right'>{{request.user}}</li>
         {% endif %}
     </ol>
-    
+
 {% block content %}{% endblock content %}
 </div>
 
@@ -132,10 +123,7 @@ $(document).ready(function(){
             $(this).addClass("img-responsive");
     })
 
-    
-
     var contentInput = $("#id_content");
-
     function setContent(value){
         var markedContent = marked(value)
         $("#preview-content").html(markedContent)
@@ -144,42 +132,28 @@ $(document).ready(function(){
         })
     }
     setContent(contentInput.val())
-
     contentInput.keyup(function(){
         var newContent = $(this).val()
         setContent(newContent)
     })
-
     var titleInput = $("#id_title");
-    
-
 
     function setTitle(value) {
         $("#preview-title").text(value)
     }
     setTitle(titleInput.val())
-
     titleInput.keyup(function(){
         var newContent = $(this).val()
         setTitle(newContent)
     })
-
     $(".comment-reply-btn").click(function(event){
         event.preventDefault();
         $(this).parent().next(".comment-reply").fadeToggle();
     })
-
-
     // preview-title
     // preview-content
-
 })
-
 </script>
 
 </body>
 </html>
-
-
-
-

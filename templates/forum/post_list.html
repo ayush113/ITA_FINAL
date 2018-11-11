@@ -42,6 +42,49 @@
 
 
 
+.taskAdd {
+    background-color: purple;
+    padding-left: 31px;
+}
+        .taskAdd:hover {
+    background: rebeccapurple;
+}
+        .but{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 34px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
+
+        .but1{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 34px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
+
 
 
 
@@ -70,28 +113,35 @@
     </style>
 {% if check_user.is_authenticated %}
 
-    <div id = "wrapper">
+    <div class="biggie">
+    <div id = "wrapper" class="row">
+
+
+    <div class="col-sm-4">
         <form action="create/" method="get">
-		    <button class="btn" type="submit"><i class="fa fa-question" style="padding-right: 10px;"></i>Ask a question</button>
-            
+		    <button class="taskAdd but1" type="submit"><i class="fa fa-question" style="padding-right: 10px;"></i>Ask a question</button>
+
 		</form>
+    </div>
 
-    <form method='GET' action='' class='row'>
-
+    <div class="col-sm-8">
+        <form method='GET' action='' class='row' style="margin-left: 350px">
+        <div class='col-sm-6'>
             <div class='input-group'>
-                <span>
-                <input class="clean-slide"  type="text"  name ='q' value="{{ request.GET.q }}"/><label for="age"></label>
-                </span>
+                <input class='form-control' style="width: 285px" type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
                 <span class='input-group-btn'>
                     <!-- <input class='btn btn-default' type='submit' value='Search' /> -->
-                  <button class="btn" type="submit"><i class="fa fa-search" style="padding-right: 10px;"></i>Search</button>
+                    <button class='taskAdd but' type='submit'>Search <i class="fa fa-search"></i></button>
 
                 </span>
 
             </div>
 
-
+        </div>
 </form>
+    </div>
+
+
     </div>
     {% endif %}
 
@@ -103,13 +153,13 @@
 <div class="row wow1">
   <div class="col-sm-12">
 {#    <div class="thumbnail">#}
-        
+
       <div class="caption post-detail-item">
         {% if obj.draft %}<h3>Staff only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Future Post</h3>{% endif %}
         <h3 style="color:black;"><a href='{{ obj.get_absolute_url }}?query={{ obj.id }}'>{{ obj.title }}</a> <small>{{ obj.publish }}</small></h3>
         {% if obj.user %}<p> Posted by @{{ obj.user }}</p>{% endif %}
-        
-        
+
+
 {#      </div >#}
     </div>
   </div>
@@ -138,6 +188,7 @@
 
 
 </div>
+    </div>
 
 {% endblock content %}
 

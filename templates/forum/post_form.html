@@ -11,8 +11,15 @@
 
 {% block content %}
 {% load crispy_forms_tags %}
+    <head>
+    <style>
+        body{
+            background-color: lightgray;
+        }
+    </style>
+    </head>
 <div class='col-sm-6'>
-<h1>Preview</h1>
+<h3>Preview</h3>
 <hr/>
 <div class='content-preview'>
     <h3 id='preview-title'></h3>
@@ -20,12 +27,17 @@
 </div>
 </div>
 <div class='col-sm-6'>
-<h1>Ask Question</h1>
+<h3>Ask Question</h3>
 <hr/>
 
 <form method='POST' action='' enctype='multipart/form-data'>{% csrf_token %}
-{{ form|crispy }}
-<input type='submit' class='btn btn-default' value='Post Question' />
+{#    {{ form.title|as_crispy_field }}<br/>#}
+{#    {{ form.content|as_crispy_field }}<br/>#}
+{#    {{ form.image|as_crispy_field }}<br/>#}
+{#    {{ form.publish|as_crispy_field }}<br/>#}
+    {{ form|crispy }}<br/>
+
+    <button type='submit' class='taskAdd but' value='Post Question'><i class="fa fa-question-circle" style="margin-right: 10px"></i> Post Question</button>
 </form>
 </div>
 {% endblock content %}
