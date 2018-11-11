@@ -44,4 +44,7 @@ def timings(request):
     with connection.cursor() as curr:
         curr.execute("Select * from timings")
         res = namedtuplefetchall(curr)
+
+    context['timings'] = res
+
     return render(request,'timings/index.html',context)

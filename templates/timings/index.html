@@ -9,28 +9,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Timings</title>
+    <link type="text/css" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
     <style>
         .bg{
             margin-left: -20px;
             margin-right: -20px;
             margin-top: -15px;
         }
+
+        .abg{
+            height: 300px;
+            width: 300px;
+            margin-right: 20px;
+            overflow-x: hidden;
+        }
+    .marg{
+        margin-left: 50px;
+    }
+
+
     </style>
+
 </head>
 <body>
-{#    {% csrf_token %}#}
-{#    <form method="post">#}
-{#        <select name="places">#}
-{#            {% for place in facilities %}#}
-{#                <option value="{{ place.place_name }}">{{ place.place_name }}</option>#}
-{#            {% endfor %}#}
-{#</select>#}
-{#    <button type="submit">Fetch</button>#}
-{#    </form>#}
-{##}
-{#    {% if timings %}#}
-{#        {{ timings }}#}
-{#    {% endif %}#}
 
     {% if weather.colour == 1 %}
         <div class="jumbotron bg" style="background: linear-gradient(pink,orange)">
@@ -94,10 +95,58 @@
         </div>
     </section>
         </div>
-
-
-
     {% endif %}
+
+
+    <table class="marg">
+        <tr>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: red">
+                    asdsd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: blue">
+sadasdasd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: red">
+                    asdsd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: blue">
+sadasdasd
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: red">
+                    asdsd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: blue">
+sadasdasd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: red">
+                    asdsd
+                </div>
+            </td>
+            <td class="bord">
+                <div class="jumbotron abg" style="background-color: blue">
+sadasdasd
+                </div>
+            </td>
+        </tr>
+    </table>
+
+
+
 </body>
 </html>
 

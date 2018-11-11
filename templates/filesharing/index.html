@@ -3,11 +3,40 @@
 {% load static %}
 
 {% block content %}
+    <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .taskAdd {
+    background-color: purple;
+    padding-left: 31px;
+}
+        .taskAdd:hover {
+    background: rebeccapurple;
+}
+        .but{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
+    </style>
+    </head>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
       <input type="text" name="filename">
     <input type="file" name="myfile">
-    <button type="submit">Upload</button>
+    <button class="taskAdd but" type="submit"><i class="fa fa-upload" style="margin-right: 10px"></i>Upload</button>
   </form>
 
   {% if uploaded_file_url %}
@@ -18,7 +47,7 @@
 
    <div class="jumbotron">
    <h4>Files Shared</h4>
-   <table>
+   <table class="border" cellpadding="15">
        <tr><th>File Name</th>
        <th>Shared By</th></tr>
        {% for link in links %}

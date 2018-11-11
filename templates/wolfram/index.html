@@ -24,34 +24,76 @@
             $("#resdiv").hide()
         })
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <style>
-    body{
-        background: url("{% static 'img/map.jpeg' %}");
-        backdrop-filter: blur();
-        background-size: cover;
-        background-repeat: no-repeat;
-
-
-    }
+    .taskAdd {
+    background-color: purple;
+    padding-left: 31px;
+}
+        .taskAdd:hover {
+    background: rebeccapurple;
+}
+        .but{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
+.centered {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+    .centered2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
 </style>
 <body>
-    <div class="jumbotron">
-        {% csrf_token %}
+    <div class="centered">
         <div class="row">
-            <div class="col-xs-4">
-                <input type="text" placeholder="Search Item Here" id="item">
-            </div>
+            <center><h3 style="margin-left: 40px; font-family: 'Lato', sans-serif "><i>Wolfram Alpha</i></h3></center>
         </div>
-        <div class="row">
-            <button class="btn btn-info" id="search" onclick="search();">Search</button>
+
+            {% csrf_token %}
+            <form method="post">
+                <div class="row">
+                <input type="text" name="term" placeholder="Search Here">&nbsp;&nbsp;
+                <button class="taskAdd but" ><i class="fa fa-search" style="margin-right: 10px"></i>Search</button>
+            </form>
         </div>
+
     </div>
-    <div class="jumbotron" id="resdiv">
-        Results:
-        <p id="results"></p>
+    {% if answer %}
+    <div class="centered2">
+     <div class="card" style="height: 200px;width: 300px">
+         <div class="card-header">
+             Results for {{ term }}
+         </div>
+         <div class="card-body">
+             {{ answer }}
+         </div>
+     </div>
     </div>
+    {% endif %}
 </body>
 </html>
 
