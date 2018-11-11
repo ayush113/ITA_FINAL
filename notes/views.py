@@ -5,7 +5,9 @@ from .utils import namedtuplefetchall
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-
+import os
+from django.core.mail import send_mail, EmailMessage
+import datetime
 # Create your views here.
 @login_required
 @csrf_exempt
@@ -50,4 +52,33 @@ def send(request):
         with connection.cursor() as curr:
             curr.execute("Insert into notes values (%s,%s,%s,%s)",[sendto,content,0,from_user])
 
+    return redirect('notes')
+
+@login_required
+@csrf_exempt
+def backup(request):
+    data = request.POST
+    print(data)
+    with connection.cursor() as curr:
+        curr.execute("Select * from notes where user_id=%s",[request.user.id])
+        backup = namedtuplefetchall(curr)
+    li = []
+    for data in backup:
+        cont = ''
+        cont += 'Description: '
+        cont+= data.description
+        cont+= '\n'
+        li.append(cont)
+    data = ''
+    for i in li:
+        data = data+i
+        data += '\n'
+    with open('backup.txt','w') as f:
+        f.write(data)
+    mail = EmailMessage('Backup File','This is your backup file for ' + str(datetime.datetime.now()),to=['gauribaraskar812@gmail.com'])
+    file = open('backup.txt')
+    mail.attach(file.name,file.read(),'text/text')
+    mail.send()
+    os.remove('backup.txt')
+    messages.info(request,message='Backup Successful')
     return redirect('notes')

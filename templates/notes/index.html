@@ -63,7 +63,7 @@
 }
 
 .note-blue {
-  background: lightsalmon;
+  background: #b9dcf4;
   -webkit-transform: rotate(-2deg);
   -moz-transform: rotate(0deg);
   -o-transform: rotate(0deg);
@@ -101,7 +101,7 @@
 }
 .vertical-alignment-helper {
     display:table;
-    height: 100%;
+    height: 60%;
     width: 100%;
 }
 .vertical-align-center {
@@ -124,9 +124,16 @@
         .taskAdd:hover {
     background: rebeccapurple;
 }
+            .taskAdd1{
+                background-color: purple;
+    padding-left: 31px;
+            }
+            .taskAdd1:hover{
+                background: rebeccapurple;
+            }
         .but{
             font-family: 'Open Sans', sans-serif;
-    background: dimgray;
+    background: purple;
     border-radius: 2px;
     border: none;
     outline: none;
@@ -142,96 +149,104 @@
     padding-right: 15px;
         }
 
+
+
         </style>
         <script>
             $(document).ready(function () {
             })
 
-            function view() {
-
-                 $("#act").fadeOut(500)
-                $("#actdiv").fadeIn(1000)
-
-            }
             
-            function collapse() {
-                $("#actdiv").fadeOut(500)
-                $("#act").fadeIn(1000)
-            }
+            function backsup() {
+                $.post('{% url 'backup' %}',{act:'backup'},function(result){
 
+                })
+            }
         </script>
 
         <body>
+        <h3 style="font-family: 'Lato', sans-serif; text-align: center">NOTES</h3><br/>
          {% for note in notes %}
-        <aside class="note-wrap note-blue">
-              {{ note.description }}<br/>
-            {% if note.priority == 0 %}
-                <p style="font-size: 12px">From: {{ note.from_user }}</p>
-            {% endif %}
-                <br/>
-                {% csrf_token %}
+        <aside class="note-wrap note-green">
+            <div class="container-fluid">
+                <div class="float-right">
+                    {% csrf_token %}
                 <form action="{% url 'deletes' %}" method="post">
                     <select  name="val" hidden="hidden">
                         <option value="{{ note.description }}">{{ note.description }}</option>
                     </select>
-                    <button class="btn"><i class="fa-trash"> Delete</i> </button>
+                    <button class="btn"><i class="fa fa-trash"></i></button>
                 </form>
+                </div>
+            </div><br/><br/>
+        <div class="container-fluid">
+            {{ note.description }}<br/>
+            {% if note.priority == 0 %}
+                <p style="font-size: 12px">From: {{ note.from_user }}</p>
+            {% endif %}
+                <br/>
+        </div>
+
             </aside>
         {% endfor %}
          <div class="btndiv pos" id="actdiv">
-             <button class="but taskAdd" data-toggle="modal" data-target="#myModal2"><i class="fa fa-mail-forward" style="margin-right: 10px"></i>Send a note</button>
+             <button class="but taskAdd" data-toggle="modal" data-target="#myModal2"><i class="fa fa-send" style="margin-right: 10px"></i>Send a note</button>
         <button class="but taskAdd"  data-toggle="modal" data-target="#myModal"><i class="fa fa-plus" style="margin-right: 10px"></i>Add note</button>
-
+        <button class="but taskAdd" onclick="backsup();"><i class="fa fa-cloud-upload" style="margin-right: 10px"></i>Backup</button>
          </div>
         </body>
 
-    <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
+                     <h4 class="modal-title" id="myModalLabel">Add new note</h4>
 
-            Add new note
-
-        </div>
-        <div class="modal-body">
+                </div>
+                <form method="post">
+                    <div class="modal-body" style="background-color: lightgray">
             {% csrf_token %}
-            <form method="post">
-                <textarea name="notes" placeholder="Your Content Here"></textarea><br/><br/>
-                <button type="submit">Submit</button>
-            </form>
-        </div>
-      </div>
 
+                <textarea name="notes" rows="10" cols="73" placeholder="Your Content Here"></textarea><br/><br/>
+
+
+        </div>
+              <div class="modal-footer">
+                    <button type="submit" class="taskAdd1 but float-right" ><i class="fa fa-plus" style="margin-right: 10px"></i>Add Note</button>
+              </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
+</div>
     <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
             <div class="modal-content">
                 <div class="modal-header">
 
-                     <h4 class="modal-title" id="myModalLabel">Send a note</h4>
+                     <h4 class="modal-title" id="myModalLabel">Send a note to</h4>
 
                 </div>
                 <form method="post" action="{% url 'sends' %}">
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: lightgray;">
                     {% csrf_token %}
 
-                        <textarea name="content" placeholder="Add your message"></textarea>
                         <select name="sendid">
                             {% for user in users %}
                                 {% if user.first_name %}
                                 <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
                                 {% endif %}
                             {% endfor %}
-                        </select>
+                        </select><br/><br/>
+                        <textarea name="content" rows="10" cols="73" placeholder="Add your message"></textarea>
+
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="taskAdd1 but" ><i class="fa fa-send" style="margin-right: 10px"></i>Send</button>
                 </div>
                 </form>
             </div>
