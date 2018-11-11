@@ -8,6 +8,8 @@
         <head>
             <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+            <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 {#            <link href="http://codepen.io/edbond88/pen/CcgvA.css" media="screen" rel="stylesheet" type="text/css" />#}
                 <script
             src="https://code.jquery.com/jquery-3.3.1.js"
@@ -85,15 +87,133 @@
     -ms-transform: rotate(-1deg);
     transform: rotate(-1deg);
 }
+
+            .pos{
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                font-size: 40px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+            .modal {
+}
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:50%;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
         </style>
+        <script>
+            $(document).ready(function () {
+                $("#actdiv").hide()
+            })
+
+            function view() {
+
+                 $("#act").fadeOut(500)
+                $("#actdiv").fadeIn(1000)
+
+            }
+            
+            function collapse() {
+                $("#actdiv").fadeOut(500)
+                $("#act").fadeIn(1000)
+            }
+
+        </script>
 
         <body>
          {% for note in notes %}
         <aside class="note-wrap note-blue">
-              {{ note.description }}
+              {{ note.description }}<br/>
+            {% if note.priority == 0 %}
+                <p style="font-size: 12px">From: {{ note.from_user }}</p>
+            {% endif %}
+                <br/>
+                {% csrf_token %}
+                <form action="{% url 'deletes' %}" method="post">
+                    <select  name="val" hidden="hidden">
+                        <option value="{{ note.description }}">{{ note.description }}</option>
+                    </select>
+                    <button class="btn"><i class="fa-trash"> Delete</i> </button>
+                </form>
             </aside>
         {% endfor %}
+         <button class="w3 w3-button w3-circle w3-teal pos" id="act" onclick="view();">Actions</button>
+         <div class="btndiv pos" id="actdiv">
+             <button class="w3-butto w3-circle w3-teal" onclick="collapse();">-</button>
+             <button class="w3-button w3-circle w3-teal" data-toggle="modal" data-target="#myModal2"><i class="fa fa-mail-forward"></i></button>
+        <button class="w3-button w3-circle w3-teal" data-toggle="modal" data-target="#myModal">+</button>
+
+         </div>
         </body>
+
+    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+
+            Add new note
+
+        </div>
+        <div class="modal-body">
+            {% csrf_token %}
+            <form method="post">
+                <textarea name="notes" placeholder="Your Content Here"></textarea><br/><br/>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                     <h4 class="modal-title" id="myModalLabel">Send a note</h4>
+
+                </div>
+                <form method="post" action="{% url 'sends' %}">
+                <div class="modal-body">
+                    {% csrf_token %}
+
+                        <textarea name="content" placeholder="Add your message"></textarea>
+                        <select name="sendid">
+                            {% for user in users %}
+                                {% if user.first_name %}
+                                <option value="{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     </html>
 
 {% endblock %}
