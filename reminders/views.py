@@ -27,7 +27,8 @@ def reminds(request):
         with connection.cursor() as curr:
             curr.execute("SELECT * FROM reminders WHERE user_id=%s",[request.user.id])
             reminders = namedtuplefetchall(curr)
-        return render(request,'reminders/index.html',{'reminders':reminders})
+        number = len(reminders)
+        return render(request,'reminders/index.html',{'reminders':reminders,'number':number})
 
 @csrf_exempt
 def removes(request):

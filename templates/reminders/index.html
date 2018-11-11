@@ -1,6 +1,8 @@
 {% extends 'accounts/layout/page.html' %}
 {% load static %}
 {% block content %}
+
+    {% load app_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,28 +40,6 @@
     </script>
     <style>
 
-
-        section:nth-child(5n+1) {
-    background-color: red;
-            width: 100%;
-            height: 120px;
-}
-
-section:nth-child(5n+2) {
-    background-color: orange;
-}
-
-section:nth-child(5n+3) {
-    background-color: blue;
-}
-
-section:nth-child(5n+4) {
-    background-color: green;
-}
-
-section:nth-child(5n+5) {
-    background-color: gray;
-}
 
 
         .btn1{
@@ -224,6 +204,8 @@ input[type=submit]:hover {
     border: 1px solid black;
 
         }
+
+
                   .note-wrap {
   width: 235px;
   min-height: 235px;
@@ -289,30 +271,108 @@ input[type=submit]:hover {
     -ms-transform: rotate(-1deg);
     transform: rotate(-1deg);
 }
+.taskAdd {
+    background-color: purple;
+    padding-left: 31px;
+}
+        .taskAdd:hover {
+    background: rebeccapurple;
+}
+        .but{
+            font-family: 'Open Sans', sans-serif;
+    background: purple;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    height: 50px;
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-left: 20px;
+    padding-right: 15px;
+        }
+
+    section{
+        font-size: 20px;
+        font-family: 'Lato', sans-serif;
+        margin-top: 50px;
+    }
     </style>
 </head>
 <body>
-<div class ="row">
-    <div class="col-lg-6">
+<center><h2 style="font-family: 'Lato', sans-serif">REMINDERS</h2></center>
+<div>
+    <div>
 
         <div class="row">
 
+
         {% if reminders %}
        {% for data in reminders %}
-      <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 ">
-        <div class="card">
 
-          <div class="image">
+      <div>
+        <div class="card">
+            {% if number|remainder:forloop.counter0 == 0 %}
+          <div class="image" style="background-color: #9fff80">
+
               <section>
-            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">
+                  <center>{{ data.reminder_time }}</center>
+{#            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">#}
             </section>
+
           </div>
+            {% endif %}
+        {% if number|remainder:forloop.counter0 == 1 %}
+          <div class="image" style="background-color: lightyellow">
+
+              <section>
+                  <center>{{ data.reminder_time }}</center>
+{#            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">#}
+            </section>
+
+          </div>
+            {% endif %}
+        {% if number|remainder:forloop.counter0 == 2 %}
+          <div class="image" style="background-color: lightsalmon">
+
+              <section>
+                  <center>{{ data.reminder_time }}</center>
+{#            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">#}
+            </section>
+
+          </div>
+            {% endif %}
+        {% if number|remainder:forloop.counter0 == 3 %}
+          <div class="image" style="background-color: lightcyan">
+
+              <section>
+                  <center>{{ data.reminder_time }}</center>
+{#            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">#}
+            </section>
+
+          </div>
+            {% endif %}
+        {% if number|remainder:forloop.counter0 == 4 %}
+          <div class="image" style="background-color: lightpink ">
+
+              <section>
+                  <center>{{ data.reminder_time }}</center>
+{#            <img src="https://imgprod60.hobbylobby.com/c/0b/35/c0b353b7db133efefde5bccc3d34a0a83dbc7b0b/350Wx350H-712992-1118.jpg" width="100%" height="100%" align="center">#}
+            </section>
+
+          </div>
+            {% endif %}
+
 
           <div class="text">
 
-            <div class="fab" onclick="removes('{{ data.description }}')">-</div>
+            <div class="fab" onclick="removes('{{ data.description }}')" >-</div>
 
-              <p style="font-size: 20px">{{ data.description }}</p>
+              <p style="font-size: 20px; margin-top: 10px" >{{ data.description }}</p>
 
           </div>
 
@@ -326,7 +386,7 @@ input[type=submit]:hover {
 
 
     </div>
-<button class="w3-button w3-xlarge w3-circle w3-black button" data-toggle="modal" data-target="#myModal3" title="Add Reminder">+</button>
+<button class="w3-button w3-xlarge w3-circle button" style="background-color: dimgray" data-toggle="modal" data-target="#myModal3" title="Add Reminder">+</button>
 </div>
 </body>
 
@@ -340,7 +400,7 @@ input[type=submit]:hover {
 
                 </div>
 
-                <div class="modal-body">
+                <div class="modal-body" style="background-color: lightgray">
                     <div class="container">
 
 
@@ -349,12 +409,12 @@ input[type=submit]:hover {
         <label for="subject">Subject</label>
       </div>
       <div class="col-75">
-        <textarea id="desc" name="subject" placeholder="Description of the reminder" style="height:200px"></textarea>
+        <textarea id="desc" name="subject" placeholder="Description of the reminder" style="height:200px;box-shadow: gray"></textarea>
       </div>
     </div>
      <div class="row">
       <div class="col-25">
-        <label for="subject">Reminder Time</label>
+        <label for="subject">Time</label>
       </div>
       <div class="col-75">
        <input type="datetime-local" id="rtime">
@@ -365,7 +425,7 @@ input[type=submit]:hover {
 
                 </div>
                 <div class="modal-footer" style="align-content: left;">
-                    <button class="btn btn-default" onclick="addsrem();" style="background-color: darkgray">Add Reminder</button>
+                    <button class="but taskAdd" onclick="addsrem();"><i class="fa fa-plus icon" style="margin-right: 10px"></i>Add Reminder</button>
                 </div>
 
             </div>
