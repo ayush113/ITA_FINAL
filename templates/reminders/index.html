@@ -12,7 +12,15 @@
     <script>
         function addsrem() {
             var description = $("#desc").val();
+            if (description == ""){
+                alert("Can not add empty description")
+                return
+            }
             var rtime = $("#rtime").val();
+            if(rtime == ""){
+                alert("Check if you have added the time correctly")
+                return
+            }
             $.post('{% url 'remind' %}',{desc:description,rtime:rtime},function(result){
                 location.reload()
             })
@@ -318,11 +326,22 @@ input[type=submit]:hover {
 
 
     </div>
-    <div class=" col-lg-6" id="addrem">
-    <h3>Add a reminder</h3>
+<button class="w3-button w3-xlarge w3-circle w3-black button" data-toggle="modal" data-target="#myModal3" title="Add Reminder">+</button>
+</div>
+</body>
 
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
 
-<div class="container">
+                     <h3 class="modal-title">Add a reminder</h3>
+
+                </div>
+
+                <div class="modal-body">
+                    <div class="container">
 
 
     <div class="row">
@@ -341,15 +360,18 @@ input[type=submit]:hover {
        <input type="datetime-local" id="rtime">
       </div>
     </div>
-    <div class="row">
-      <button class="btn btn-default" onclick="addsrem();" style="background-color: darkgray">Add Reminder</button>
-    </div>
+
 </div>
 
+                </div>
+                <div class="modal-footer" style="align-content: left;">
+                    <button class="btn btn-default" onclick="addsrem();" style="background-color: darkgray">Add Reminder</button>
+                </div>
+
+            </div>
+        </div>
     </div>
-<button class="w3-button w3-xlarge w3-circle w3-black button" title="Add Reminder" onclick="$('#addrem').toggle()">+</button>
 </div>
-</body>
 </html>
 
 {% endblock %}
