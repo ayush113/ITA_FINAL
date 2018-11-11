@@ -2,25 +2,101 @@
 
 {% block content %}
 
+    {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Timings</title>
+    <style>
+        .bg{
+            margin-left: -20px;
+            margin-right: -20px;
+            margin-top: -15px;
+        }
+    </style>
 </head>
 <body>
-    {% csrf_token %}
-    <form method="post">
-        <select name="places">
-            {% for place in facilities %}
-                <option value="{{ place.place_name }}">{{ place.place_name }}</option>
-            {% endfor %}
-</select>
-    <button type="submit">Fetch</button>
-    </form>
+{#    {% csrf_token %}#}
+{#    <form method="post">#}
+{#        <select name="places">#}
+{#            {% for place in facilities %}#}
+{#                <option value="{{ place.place_name }}">{{ place.place_name }}</option>#}
+{#            {% endfor %}#}
+{#</select>#}
+{#    <button type="submit">Fetch</button>#}
+{#    </form>#}
+{##}
+{#    {% if timings %}#}
+{#        {{ timings }}#}
+{#    {% endif %}#}
 
-    {% if timings %}
-        {{ timings }}
+    {% if weather.colour == 1 %}
+        <div class="jumbotron bg" style="background: linear-gradient(pink,orange)">
+<section class="section"  >
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image" width="100px" height="100px">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p >
+                                        <span class="title" style="font-family: 'Lato', sans-serif;font-size: 30px">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle" style="font-family: 'Lato', sans-serif;font-size: 25px">{{ weather.temperature }}° C</span>
+                                        <br> <p style="font-family: 'Lato', sans-serif;font-size: 20px">{{ weather.description }}</p>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+    {% else %}
+        <div class="jumbotron bg" style="background: linear-gradient(lightskyblue,blue)">
+            <section class="section"  >
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-50x50">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <span class="title">{{ weather.city }}</span>
+                                        <br>
+                                        <span class="subtitle">{{ weather.temperature }}° C</span>
+                                        <br> {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        </div>
+
+
+
     {% endif %}
 </body>
 </html>

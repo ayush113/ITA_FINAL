@@ -69,7 +69,7 @@ function checkTime(i) {
   		<div class="card-body">
             <a href="{% url 'todolist' %}" style="color: black">
                 <img src="{% static 'img/todo.jpeg' %}" height="40px" width="40px">
-    		<h4 class="card-title">Todo List</h4>
+    		<h4 class="card-title">Assignment Tracker</h4>
             </a>
 
   		</div>
@@ -96,7 +96,7 @@ function checkTime(i) {
 	</div>
     <div class="card bg-light mb-3" style="max-width: 30%; display: inline-block;">
   		<div class="card-body">
-            <a href="#" style="color: black">
+            <a href="{% url 'upload' %}" style="color: black">
                 <img src="{% static 'img/file.jpeg' %}" height="40px" width="40px">
     		<h4 class="card-title">File Sharing</h4>
             </a>
