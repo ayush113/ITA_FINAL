@@ -17,7 +17,7 @@ idna==2.7
 inflect==1.0.1
 jaraco.itertools==3.0.0
 kombu==4.2.1
-lxml==4.2.5
+lxml==4.6.3
 markdown2==2.3.6
 microurl==0.1.1
 more-itertools==4.3.0
