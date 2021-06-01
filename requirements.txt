@@ -31,7 +31,7 @@ sendgrid==5.6.0
 six==1.11.0
 sorl-thumbnail==12.4a1
 South==1.0.2
-urllib3==1.24.1
+urllib3==1.26.5
 vine==1.1.4
 wolframalpha==3.0.1
 xmltodict==0.11.0
